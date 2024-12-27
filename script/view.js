@@ -78,15 +78,16 @@ class View {
         
     }
     row(d) {
+        const statusClass = d.status === "Passed" ? "text-success" : "text-danger";
         return `
             <tr>
-                <td>${d.id}</td>
-                <td>${d.name}</td>
-                <td>${d.email}</td>
-                <td>${d.marks}</td>
-                <td>${d.status}</td>
+            <td>${d.id}</td>
+            <td>${d.name}</td>
+            <td>${d.email}</td>
+            <td>${d.marks}</td>
+            <td class="${statusClass}">${d.status}</td>
             </tr>
-        `
+        `;
     }
     renderTable(data) {
         console.log("rendering table");
