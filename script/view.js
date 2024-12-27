@@ -71,23 +71,13 @@ const students = [
     }
 ]
 const tableBody = document.getElementById("student-table-body");
-
-// // Search functionality
-// document.getElementById("search").addEventListener("input", (event) => {
-//     const searchValue = event.target.value.toLowerCase();
-//     const filteredStudents = students.filter(student =>
-//         student.name.toLowerCase().includes(searchValue) ||
-//         student.email.toLowerCase().includes(searchValue) ||
-//         student.id.toString().includes(searchValue)
-//     );
-//     renderTable(filteredStudents);
-// });
+const searchInput = document.getElementById("search");
 
 class View {
-    constructor(data) {
-        this.data = data
+    constructor() {
+        
     }
-    row(d){
+    row(d) {
         return `
             <tr>
                 <td>${d.id}</td>
@@ -98,14 +88,37 @@ class View {
             </tr>
         `
     }
-    renderTable() {
+    renderTable(data) {
         console.log("rendering table");
         tableBody.innerHTML = ""; // Clear previous data
-        this.data.forEach(d => {
+        data.forEach(d => {
             tableBody.innerHTML += this.row(d);
+        });
+    }
+    search(data) {
+        searchInput.addEventListener("input", (event) => {
+            const searchValue = data.filter(d => 
+                d.name.toLowerCase().includes(event.target.value.toLowerCase()) ||
+                d.email.toLowerCase().includes(event.target.value.toLowerCase()) ||
+                d.id.toString().includes(event.target.value.toLowerCase())
+            )
+            if (searchValue.length > 0) {
+                this.renderTable(searchValue);
+            }else {
+                tableBody.innerHTML = `
+                    <tr>
+                        <td colspan="5" class="text-center">
+                            <span class="h1 text-danger">No data found</span>
+                        </td>
+                    </tr>
+                `
+            }
+            
+            
         });
     }
 }
 
-const view = new View(students);
-view.renderTable();
+const view = new View();
+view.renderTable(students);
+view.search(students);
