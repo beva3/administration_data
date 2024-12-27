@@ -1,0 +1,74 @@
+ /* General Styling */
+ body {
+    background-color: #0d1117; /* Dark background */
+    color: #d1d5db; /* Soft white text */
+    font-family: 'Arial', sans-serif;
+}
+
+h1 {
+    color: #f7768e; /* Vibrant pink title color */
+    font-weight: bold;
+}
+
+/* Search Bar */
+.search-bar {
+    background-color: #161b22; /* Slightly lighter dark */
+    border: 1px solid #3f4857; /* Border with muted tone */
+    color: #d1d5db; /* Text color */
+    border-radius: 8px;
+    padding: 10px;
+}
+
+.search-bar::placeholder {
+    color: #6c7280; /* Placeholder muted gray */
+}
+
+/* Table Styling */
+.table {
+    background-color: #161b22; /* Dark table background */
+    color: #d1d5db; /* Light text */
+    border: 1px solid #3f4857; /* Border */
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+}
+
+.table th {
+    background-color: #1e262f; /* Darker header */
+    color: #ffcb6b; /* Yellow text for headers */
+}
+
+.table td {
+    background-color: #161b22; /* Match background */
+    color: #d1d5db; /* Soft white text */
+}
+
+.table tr:nth-child(even) td {
+    background-color: #1a2028; /* Slightly darker for alternation */
+}
+
+/* Dropdown Styling */
+.form-select {
+    background-color: #161b22;
+    border: 1px solid #3f4857;
+    color: #d1d5db;
+    border-radius: 5px;
+}
+
+/* Pagination */
+.pagination .page-item .page-link {
+    background-color: #1e262f; /* Dark buttons */
+    border: 1px solid #3f4857; /* Muted border */
+    color: #ffcb6b; /* Yellow text */
+}
+
+.pagination .page-item.active .page-link {
+    background-color: #f7768e; /* Pink for active */
+    color: #0d1117; /* Dark text */
+    border: none;
+}
+
+.pagination .page-link:hover {
+    background-color: #ffcb6b; /* Yellow hover */
+    color: #0d1117; /* Dark text */
+}
