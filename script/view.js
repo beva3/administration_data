@@ -74,7 +74,7 @@ const tableBody = document.getElementById("student-table-body");
 const searchInput = document.getElementById("search");
 const selectMarks = document.getElementById("marks"); console
 const selectStatus = document.getElementById("status");
-
+const sort = document.getElementById("sort");
 class View {
     constructor() {
 
@@ -149,15 +149,34 @@ class View {
             let filteredData = data.filter(d => d.status.includes(selectedValue));
             if (selectedValue === "Status")
                 this.renderTable(data);
-            else{
+            else {
                 if (filteredData.length > 0) {
                     this.renderTable(filteredData);
                 } else {
                     tableBody.innerHTML = this.msg_row("No data found");
                 }
             }
-            
-            
+
+
+        });
+    }
+    sort_by(data) {
+        sort.addEventListener("change", (event) => {
+            const selectedValue = event.target.value;
+            switch (selectedValue) {
+                case "1":
+                    console.log("sort by name");
+                    data.sort((a, b) => a.name.localeCompare(b.name));
+                    this.renderTable(data);
+                    break;
+                case "2":
+                    console.log("sort by marks");
+                    data.sort((a, b) => a.marks - b.marks);
+                    this.renderTable(data);
+                    break;
+                default:
+                    break;
+            }
         });
     }
 }
@@ -167,3 +186,4 @@ view.renderTable(students);
 view.search(students);
 view.category(students);
 view.status(students);
+view.sort_by(students);

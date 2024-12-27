@@ -14,8 +14,13 @@
     <div class="container my-5">
         <!-- Title and Search Bar -->
         <div class="d-flex align-items-center justify-content-between mb-4">
-            <h1 class="mb-0">Student Information</h1>
-            <input type="text" id="search" class="form-control search-bar w-50" placeholder="Find name, ID, or email" aria-label="Search">
+            <h1 class="mb-0 flex-grow-1">Student Information</h1>
+            <select class="form-select text-center w-auto mx-4" id="sort">
+                <option value="1">Sort by name</option>
+                <option value="2">sort by marks</option>
+            </select>
+            <input type="text" id="search" class="form-control search-bar w-50" placeholder="Find name, ID, or email"
+                aria-label="Search">
         </div>
 
         <!-- Table -->
@@ -27,10 +32,10 @@
                     <th>Email</th>
                     <th>
                         <select class="form-select text-center" name="" id="marks">
-                            <option value="all"     >all</option>
-                            <option value="0-50"    >0-50</option>
-                            <option value="51-75"   >51-75</option>
-                            <option value="76-100"  >76-100</option>
+                            <option value="all">all</option>
+                            <option value="0-50">0-50</option>
+                            <option value="51-75">51-75</option>
+                            <option value="76-100">76-100</option>
                         </select>
                     </th>
                     <th>
