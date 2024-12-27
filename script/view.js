@@ -72,10 +72,12 @@ const students = [
 ]
 const tableBody = document.getElementById("student-table-body");
 const searchInput = document.getElementById("search");
+const selectMarks = document.getElementById("marks"); console
+
 
 class View {
     constructor() {
-        
+
     }
     row(d) {
         const statusClass = d.status === "Passed" ? "text-success" : "text-danger";
@@ -89,6 +91,15 @@ class View {
             </tr>
         `;
     }
+    msg_row(msg) {
+        return `
+            <tr>
+                <td colspan="5" class="text-center">
+                    <span class="h1 text-danger">${msg}</span>
+                </td>
+            </tr>
+        `;
+    }
     renderTable(data) {
         console.log("rendering table");
         tableBody.innerHTML = ""; // Clear previous data
@@ -98,24 +109,37 @@ class View {
     }
     search(data) {
         searchInput.addEventListener("input", (event) => {
-            const searchValue = data.filter(d => 
+            const searchValue = data.filter(d =>
                 d.name.toLowerCase().includes(event.target.value.toLowerCase()) ||
                 d.email.toLowerCase().includes(event.target.value.toLowerCase()) ||
                 d.id.toString().includes(event.target.value.toLowerCase())
             )
             if (searchValue.length > 0) {
                 this.renderTable(searchValue);
-            }else {
-                tableBody.innerHTML = `
-                    <tr>
-                        <td colspan="5" class="text-center">
-                            <span class="h1 text-danger">No data found</span>
-                        </td>
-                    </tr>
-                `
+            } else {
+                tableBody.innerHTML = this.msg_row("No data found");
             }
-            
-            
+
+
+        });
+    }
+    category(data) {
+        selectMarks.addEventListener("change", (event) => {
+
+            const selectedValue = event.target.value;
+            console.log(selectedValue);
+            if (selectedValue === "all")
+                this.renderTable(data);
+            else {
+                let interval = selectedValue.split("-").map(elt => parseInt(elt));
+                let filteredData = data.filter(d => d.marks >= interval[0] && d.marks <= interval[1]);
+                if (filteredData.length > 0) {
+                    this.renderTable(filteredData);
+                } else {
+                    tableBody.innerHTML = this.msg_row("No data found");
+                }
+            }
+
         });
     }
 }
@@ -123,3 +147,4 @@ class View {
 const view = new View();
 view.renderTable(students);
 view.search(students);
+view.category(students);
