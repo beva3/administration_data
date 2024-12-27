@@ -164,6 +164,11 @@ class View {
         sort.addEventListener("change", (event) => {
             const selectedValue = event.target.value;
             switch (selectedValue) {
+                case "0":
+                    console.log("sort by id");
+                    data.sort((a, b) => a.id - b.id);
+                    this.renderTable(data);
+                    break;
                 case "1":
                     console.log("sort by name");
                     data.sort((a, b) => a.name.localeCompare(b.name));
