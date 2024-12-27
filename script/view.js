@@ -73,7 +73,7 @@ const students = [
 const tableBody = document.getElementById("student-table-body");
 const searchInput = document.getElementById("search");
 const selectMarks = document.getElementById("marks"); console
-
+const selectStatus = document.getElementById("status");
 
 class View {
     constructor() {
@@ -142,9 +142,28 @@ class View {
 
         });
     }
+    status(data) {
+        selectStatus.addEventListener("change", (event) => {
+
+            const selectedValue = event.target.value;
+            let filteredData = data.filter(d => d.status.includes(selectedValue));
+            if (selectedValue === "Status")
+                this.renderTable(data);
+            else{
+                if (filteredData.length > 0) {
+                    this.renderTable(filteredData);
+                } else {
+                    tableBody.innerHTML = this.msg_row("No data found");
+                }
+            }
+            
+            
+        });
+    }
 }
 
 const view = new View();
 view.renderTable(students);
 view.search(students);
 view.category(students);
+view.status(students);
